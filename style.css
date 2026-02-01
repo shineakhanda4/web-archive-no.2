@@ -1,0 +1,273 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Space+Grotesk:wght@300..700&display=swap');
+
+:root {
+    /* 2026 Ultra-Modern Palette */
+    --bg-dark: oklch(12% 0.03 260);
+    --bg-card: oklch(18% 0.04 260 / 0.7);
+    --primary: oklch(70% 0.18 250); /* Electric Blue */
+    --secondary: oklch(80% 0.22 85);  /* Golden Glow */
+    --accent: oklch(65% 0.25 330);    /* Hyper Pink */
+    --text-main: oklch(98% 0.01 260);
+    --text-dim: oklch(80% 0.02 260);
+    
+    --glass-border: oklch(100% 0 0 / 0.15);
+    --glow-shadow: 0 0 30px oklch(70% 0.18 250 / 0.2);
+    
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-fast: 0.3s var(--ease-out-expo);
+    --transition-slow: 0.8s var(--ease-out-expo);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+    
+    /* Background configuration - Layered for depth */
+    background-image: 
+        /* radial-gradient(circle at 0% 0%, oklch(30% 0.1 250 / 0.2) 0%, transparent 50%), */
+        /* radial-gradient(circle at 100% 100%, oklch(30% 0.1 330 / 0.15) 0%, transparent 50%), */
+        url('photo.png');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: relative;
+}
+
+/* Subtle Noise Texture Overlay */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    /* background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"); */
+    opacity: 0.04;
+    pointer-events: none;
+    z-index: 1;
+}
+
+header-component {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+main {
+    padding-top: 140px;
+    padding-bottom: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4rem;
+    position: relative;
+    z-index: 10;
+}
+
+section {
+    width: 90%;
+    max-width: 1100px;
+    padding: 5rem 3rem;
+    background: var(--bg-card);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(36px);
+    border-radius: 40px;
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.4);
+    animation: revealIn 1.2s var(--ease-out-expo);
+    position: relative;
+    overflow: hidden;
+    text-align: center; /* Center content within section */
+}
+
+section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, transparent 0%, oklch(100% 0 0 / 0.03) 100%);
+    pointer-events: none;
+}
+
+.logo-container {
+    background-color: white;
+    padding: 1.5rem 2.5rem; /* Increased padding for better visual */
+    border-radius: 20px;
+    display: inline-block; /* Shrink-wrap content */
+    margin-bottom: 2rem; /* Space below the logo */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2); /* Soft shadow */
+    transform: rotate(-2deg); /* Slight tilt for character */
+    transition: transform 0.3s var(--ease-out-expo);
+}
+
+.logo-container:hover {
+    transform: rotate(0deg) scale(1.02);
+}
+
+.logo-container h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 800; /* Bolder font */
+    font-size: clamp(1.8rem, 5vw, 3.5rem); /* Smaller font size for logo text */
+    color: var(--bg-dark); /* Dark text on white background */
+    background: none; /* Remove gradient text fill */
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: unset;
+    margin-bottom: 0; /* Remove extra margin */
+    letter-spacing: -0.05em;
+    line-height: 1.2;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+h1, h2, h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+}
+
+/* The general h1 style should only apply outside .logo-container */
+h1:not(.logo-container h1) {
+    font-size: clamp(3rem, 10vw, 6rem);
+    background: linear-gradient(to right, #fff, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 2rem;
+    text-shadow: none; /* Remove text shadow for other h1 elements */
+}
+
+p {
+    font-size: 1.2rem;
+    color: var(--text-dim);
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.feature-card {
+    background: oklch(10% 0.02 260 / 0.5);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(32px);
+    border-radius: 24px;
+    padding: 2.5rem;
+    transition: var(--transition-slow);
+    position: relative;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: var(--primary);
+    box-shadow: var(--glow-shadow);
+}
+
+.btn-primary {
+    display: inline-block;
+    padding: 1.2rem 3rem;
+    background: var(--primary);
+    color: var(--bg-dark);
+    text-decoration: none;
+    font-weight: 700;
+    border-radius: 100px;
+    font-family: 'Space Grotesk', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: var(--transition-fast);
+    margin-top: 2rem;
+    box-shadow: 0 10px 30px oklch(70% 0.18 250 / 0.3);
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+    background: var(--secondary);
+    box-shadow: 0 15px 40px oklch(80% 0.22 85 / 0.4);
+}
+
+@keyframes revealIn {
+    0% {
+        opacity: 0;
+        transform: translateY(60px) rotateX(10deg);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) rotateX(0);
+    }
+}
+
+::selection {
+    background: var(--primary);
+    color: var(--bg-dark);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+@media (max-width: 768px) {
+    main {
+        padding-top: 100px;
+        gap: 2rem;
+    }
+
+    section {
+        padding: 3rem 1.5rem;
+        border-radius: 30px;
+        width: 95%;
+    }
+
+    h1:not(.logo-container h1) {
+        font-size: clamp(2.5rem, 12vw, 4rem);
+    }
+
+    p {
+        font-size: 1.1rem;
+    }
+
+    .logo-container {
+        padding: 1rem 1.5rem;
+    }
+
+    .logo-container h1 {
+        font-size: clamp(1.5rem, 7vw, 2.5rem);
+    }
+
+    .btn-primary {
+        padding: 1rem 2rem;
+        font-size: 0.9rem;
+    }
+
+    .feature-card {
+        padding: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    main {
+        padding-top: 80px;
+    }
+
+    section {
+        padding: 2.5rem 1rem;
+        border-radius: 20px;
+    }
+
+    h1:not(.logo-container h1) {
+        font-size: clamp(2rem, 15vw, 3rem);
+    }
+
+    p {
+        font-size: 1rem;
+    }
+
+    .btn-primary {
+        padding: 0.8rem 1.5rem;
+    }
+}
