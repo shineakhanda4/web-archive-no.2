@@ -6,7 +6,14 @@
     <script>
         const wpHomeUrl = "<?php echo esc_url(home_url()); ?>";
     </script>
-    <?php wp_head(); ?>
+    <?php wp_head();
+<style>
+    body {
+        background-image: url('<?php echo get_template_directory_uri(); ?>/photo.png') !important;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+</style> ?>
 </head>
 <body <?php body_class(); ?>>
     <header-component></header-component>
