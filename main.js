@@ -83,11 +83,12 @@ class Header extends HTMLElement {
                     }
                 }
             </style>
+            // Inside your main.js template literal
             <nav>
-                <a href="index.html" title="Home"><i class="fas fa-home-alt"></i><span class="nav-text">Home</span></a>
-                <a href="info.html" title="About Us"><i class="fas fa-info-circle"></i><span class="nav-text">About</span></a>
-                <a href="ourservice.html" title="Our Services"><i class="fas fa-concierge-bell"></i><span class="nav-text">Services</span></a>
-                <a href="contact.html" title="Contact Us"><i class="fas fa-envelope"></i><span class="nav-text">Contact</span></a>
+                 <a href="${wpHomeUrl}" title="Home"><i class="fas fa-home-alt"></i><span class="nav-text">Home</span></a>
+                 <a href="${wpHomeUrl}/info/" title="About Us"><i class="fas fa-info-circle"></i><span class="nav-text">About</span></a>
+                 <a href="${wpHomeUrl}/ourservice/" title="Our Services"><i class="fas fa-concierge-bell"></i><span class="nav-text">Services</span></a>
+                 <a href="${wpHomeUrl}/contact/" title="Contact Us"><i class="fas fa-envelope"></i><span class="nav-text">Contact</span></a>
             </nav>
         `;
         shadow.appendChild(header);
